@@ -7,23 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    protected $fillable = ['title', 'content', 'user_id'];
 
-    protected $fillable = [
-        'user_id',
-        'title',
-        'content',
-        'image_path',
-        'location',
-    ];
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
-    public function tags(){
-        return $this->belongsToMany(Tag::class);
-    }
 }
+
